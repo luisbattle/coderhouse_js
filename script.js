@@ -103,6 +103,7 @@ const myCart = {
 
 let shoppingCart = []
 let exit = false
+let isValid = false
 
 // MENU
 do {
@@ -124,12 +125,22 @@ do {
 
     myCart.items.push(shoppingCart.getCart())
 
-    addMoreProducts = prompt(`Desea agregar mas productos al carrito SI/NO`)
-    if (addMoreProducts.toUpperCase() == 'SI') {
-      exit = false
-    } else {
-      exit = true
-    }
+    do {
+      isValid = false
+      addMoreProducts = prompt(`Desea agregar mas productos al carrito SI/NO`)
+      if (addMoreProducts.toUpperCase() === 'SI') {
+        isValid = true
+
+        exit = false
+      }
+      if (addMoreProducts.toUpperCase() === 'NO') {
+        isValid = true
+        exit = true
+      }
+      console.log(isValid)
+
+    } while (isValid == false);
+
   }
 
 } while (exit == false);
@@ -143,7 +154,7 @@ let buildTicket = ""
 const getTicketDetails = () => {
   let ticketDetails = ""
   myCart.items.forEach(item => {
-    ticketDetails += `${item.productId} - ${item.productName} - ${item.quantity} - $${item.unitPrice} - $${item.totalPrice} \n`
+    ticketDetails += `${item.productId} - ${item.productName} X ${item.quantity} Unidad - $${item.unitPrice} - $${item.totalPrice} \n`
   });
   return ticketDetails
 
