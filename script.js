@@ -1,164 +1,158 @@
-// Set Variables
-const company_name = "El Paisa Productos"
-const producto_1001 = `[1001] - Hamburguesa con queso`
-const producto_1002 = `[1002] - Mila Napolitana`
-const producto_1003 = `[1003] - Super Pizza Napolitana`
-const producto_1004 = `[1004] - Ñoquis con Salsa Bolognesa`
-const producto_1005 = `[1005] - Sandwich de vacio completo`
-const producto_1006 = `[1006] - Parrillada completa para 2Personas`
-
-const producto_1001_price = 4400
-const producto_1002_price = 4000
-const producto_1003_price = 3500
-const producto_1004_price = 3000
-const producto_1005_price = 2500
-const producto_1006_price = 6000
-
-
-// Greeting
-const greeting = () => {
-  alert(`Bienvenido a ${company_name}`)
-}
-
-
-// show Menu
-const showMenu = () => {
-  const selected_option = prompt(showProducts())
-
-  return selected_option
-}
-//show products
-const showProducts = () => {
-  return `Elegí un producto ingresando el ID: \n
-  ${producto_1001}
-  ${producto_1002}
-  ${producto_1003}
-  ${producto_1004}
-  ${producto_1005}
-  ${producto_1006}
-  EXIT - presiona exit para salir`
-}
-const validateOption = (selected_option) => {
-  switch (selected_option.toLocaleLowerCase()) {
-    case "1001":
-      break;
-
-    case "1002":
-      break;
-
-    case "1003":
-      break;
-
-    case "1004":
-      break;
-
-    case "1005":
-      break;
-
-    case "1006":
-      break;
-
-    case "exit":
-      break;
-
-    default:
-      alert(`La opcion seleccionada ${selected_option} no esta disponible o es incorrecta, intentá nuevamente ingresando el ID del producto`)
-      return false
-      break;
+const products = [
+  {
+    id: 1,
+    name: "Auricular Redragon RGB",
+    brandName: "Redragon",
+    category: "Auriculares",
+    description: "",
+    price: 1000,
+    stockQuantity: 2
+  },
+  {
+    id: 2,
+    name: "Procesador Ryzen 9 5900X 4.6Hz turbo AM4 ",
+    brandName: "AMD",
+    category: "Procesadores",
+    description: "",
+    price: 2000,
+    stockQuantity: 2
+  },
+  {
+    id: 3,
+    name: "Gamepad Xbox Bluetooth",
+    brandName: "Microsoft",
+    category: "Joysticks",
+    description: "",
+    price: 3000,
+    stockQuantity: 2
+  },
+  {
+    id: 4,
+    name: "Teclado Logitech RGB ",
+    brandName: "Logitech",
+    category: "Auriculares",
+    description: "",
+    price: 6000
+  },
+  {
+    id: 5,
+    name: "Gabinete Asus Tuf 301",
+    brandName: "Redragon",
+    description: "",
+    category: "Gabinetes",
+    price: 5000
   }
-  return true
-}
+]
 
-const getProductPrice = (productId) => {
-  console.log("productId Selected" + typeof (productId) + " - " + productId)
-  switch (parseInt(productId)) {
-    case 1001:
-      return producto_1001_price
-    case 1002:
-      return producto_1002_price
-    case 1003:
-      return producto_1003_price
-    case 1004:
-      return producto_1004_price
-    case 1005:
-      return producto_1005_price
-    case 1006:
-      return producto_1006_price
-    default:
-      return "Precio no encontrado";
+const getProductById = (productById) => {
+  const product = products.filter((product) => product.id == productById)
+  return product[0]
+}
+const totalAmount = (cart) => {
+  console.log("cart actually....", cart)
+
+  const totalAmount = cart.items.reduce((acumulador, elemento) => acumulador + elemento.totalPrice, 0)
+
+  return {
+    totalAmount: totalAmount
   }
 }
-const getProductName = (productId) => {
-  switch (parseInt(productId)) {
-    case 1001:
-      return producto_1001
-    case 1002:
-      return producto_1002
-    case 1003:
-      return producto_1003
-    case 1004:
-      return producto_1004
-    case 1005:
-      return producto_1005
-    case 1006:
-      return producto_1006
-    default:
-      return "Producto no encontrado";
+
+parseProducts = () => {
+  let productOptions = ""
+  products.forEach((product) => {
+    productOptions += `${product.id} - ${product.name} - ${product.price} \n`
+  })
+  return productOptions
+}
+
+// Getting a random integer between two values
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+}
+
+
+class ShoppingCart {
+
+  constructor(productId, quantity) {
+    this.productId = productId
+    this.quantity = quantity
   }
+
+  getCart() {
+    return (
+      {
+        productId: this.productId,
+        productName: getProductById(this.productId).name,
+        quantity: this.quantity,
+        unitPrice: getProductById(this.productId).price,
+        totalPrice: this.quantity * getProductById(this.productId).price
+      }
+    )
+  }
+
 }
-const calculateTotalPrice = (productPrice, productQuantity) => {
-  return productPrice * productQuantity;
+
+// VARIABLES
+const myCart = {
+  items: [],
+  amount: [],
 }
 
+let shoppingCart = []
+let exit = false
 
-// Main Function
-const main = () => {
+// MENU
+do {
 
-  greeting()
+  const productId = prompt(`Ingresa el ID de PRODUCTO a comprar \n${parseProducts()}\nSi desea salir ingrese 'SALIR'`)
 
-  let exit_menu = true;
-  let productId = ""
-  let exit_app = false
-  let selected_option = ""
+  // usuario selecciona salir
+  if (productId.toUpperCase() === "SALIR") {
+    exit = true
+  }
+  // No existe el producto
+  if (!getProductById(productId) && exit != true) {
+    alert("el id ingresado no existe.... Ingrese un ID de producto valido")
+  }
+  // existe el producto
+  if (getProductById(productId)) {
+    const quantity = prompt(`¿Cuantos productos deseas? \n ${getProductById(productId).name} - $${getProductById(productId).price}`)
+    shoppingCart = new ShoppingCart(productId, quantity)
 
+    myCart.items.push(shoppingCart.getCart())
 
-  // MENU
-  do {
-    selected_option = showMenu()
-    exit_loop_menu = validateOption(selected_option)
-    if (selected_option.toLocaleLowerCase() == "exit") {
-      exit_app = true
+    addMoreProducts = prompt(`Desea agregar mas productos al carrito SI/NO`)
+    if (addMoreProducts.toUpperCase() == 'SI') {
+      exit = false
+    } else {
+      exit = true
     }
-    console.log(exit_menu)
-  } while (exit_loop_menu == false);
-
-  // GET PRODUCT ID && PRICE
-  if (!exit_app) {
-    productId = parseInt(selected_option)
-    console.log(`opcion seleccionada ${selected_option}`)
-    console.log(`ProductId: ${productId}`)
-    alert(`Usted seleccionó 
-    ${getProductName(productId)} ---> $${getProductPrice(productId)}`)
-    const productQuantity = prompt(`Ingrese la cantidad que desea comprar:
-    --------------------------------------
-    ${getProductName(productId)}
-    --------------------------------------`)
-
-    const totalToPay = calculateTotalPrice(getProductPrice(productId), productQuantity)
-    alert(`Tu pedido se está preparando
-    PEDIDO Nº 144948293849
-    -------------------------------------------------------------
-    ${getProductName(productId)}         ${getProductPrice(productId)} X ${productQuantity}
-    -------------------------------------------------------------
-    TOTAL: $ ${totalToPay}`)
-
-  } else {
-    // FIN
-    console.log("APP EXIT")
-    alert("Nos vemos pronto :)")
   }
+
+} while (exit == false);
+
+
+// TOTAL
+myCart.amount.push(totalAmount(myCart))
+console.log("carrito actual es....", myCart)
+
+let buildTicket = ""
+const getTicketDetails = () => {
+  let ticketDetails = ""
+  myCart.items.forEach(item => {
+    ticketDetails += `${item.productId} - ${item.productName} - ${item.quantity} - $${item.unitPrice} - $${item.totalPrice} \n`
+  });
+  return ticketDetails
 
 }
 
-
-main()
+alert(`TICKET Nº ${getRandomInt(1000, 1000000)}
+---------------------------------------------------------------
+[CODIGO] [DESCRIPCION]  [CANT.] [PRECIO UNIT] [SUBTOTAL] 
+${getTicketDetails()}
+---------------------------------------------------------------
+TOTAL A ABONAR: $${myCart.amount[0].totalAmount}
+`)
