@@ -22,3 +22,10 @@
 - Clase ShoppingCart con método getCart()
 - Array myCart donde se pushean los objetos que vamos creando.
 ![Alt text](./img/myCart.png)
+
+
+## Que se hizo
+    - Maquetado de carrito y se agregaron botones,estilos.
+
+## Que hay que hacer
+    - Agregar evento al boton Agregar para agregar el producto hacia carrito de compra

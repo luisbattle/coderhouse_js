@@ -1,0 +1,52 @@
+const products = [
+    {
+        id: 1,
+        name: "Auricular Redragon RGB",
+        brandName: "Redragon",
+        category: "Auriculares",
+        description: "",
+        price: 26800,
+        image: "https://http2.mlstatic.com/D_NQ_NP_2X_789680-MLA43246728560_082020-F.webp",
+        stockQuantity: 2
+    },
+    {
+        id: 2,
+        name: "Procesador Ryzen 9 5900X 4.6Hz turbo AM4 ",
+        brandName: "AMD",
+        category: "Procesadores",
+        description: "",
+        price: 130000,
+        image: "https://http2.mlstatic.com/D_NQ_NP_2X_919720-MLU69957166156_062023-F.webp",
+        stockQuantity: 2
+    },
+    {
+        id: 3,
+        name: "Gamepad Xbox Bluetooth",
+        brandName: "Microsoft",
+        category: "Joysticks",
+        description: "",
+        price: 52000,
+        image: "https://http2.mlstatic.com/D_NQ_NP_2X_962443-MLA54147001760_032023-F.webp",
+        stockQuantity: 2
+    },
+    {
+        id: 4,
+        name: "Teclado Logitech RGB ",
+        brandName: "Logitech",
+        category: "Auriculares",
+        description: "",
+        price: 83200,
+        image: "https://http2.mlstatic.com/D_NQ_NP_2X_729345-MLA44052027542_112020-F.webp"
+    },
+    {
+        id: 5,
+        name: "Gabinete Asus Tuf 301",
+        brandName: "Redragon",
+        description: "",
+        category: "Gabinetes",
+        price: 86500,
+        image: "https://http2.mlstatic.com/D_NQ_NP_2X_860206-MLU54983181385_052023-F.webp"
+    }
+]
+
+// export default products
