@@ -1,4 +1,4 @@
-import usersDb from './data/users.js'
+import usersDb from '../data/users.js'
 
 // pop-up
 // Swal.fire('Any fool can use a computer')
@@ -11,7 +11,7 @@ btnLogin.addEventListener("click", (event) => {
         console.log(`Welcome ${userLogin.user.firstName} ${userLogin.user.lastName}`)
         localStorage.setItem("userInfo", JSON.stringify(userLogin.user))
         // Move to index.html "carrito de compras"
-        location.href = "index.html"
+        location.href = "cart.html"
     } else {
         console.log("invalid login")
         Swal.fire({

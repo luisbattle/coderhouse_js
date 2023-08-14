@@ -16,7 +16,6 @@ const getUserInfo = () => {
   }
 }
 
-
 const getProductById = (productById) => {
   const product = products.filter((product) => product.id == productById)
   return product[0]
@@ -135,6 +134,13 @@ const loadProductItems = () => {
 getUserInfo()
 
 loadProductItems()
+
+// Btn user logout
+const btnUserLogout = document.getElementById("userLogout")
+btnUserLogout.addEventListener("click", () => {
+  localStorage.removeItem("userInfo")
+  location.href = "index.html"
+})
 
 // Add Product to Cart
 const btnAddProducts = document.querySelectorAll(".btnAddProduct")
