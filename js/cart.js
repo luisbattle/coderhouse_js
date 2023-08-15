@@ -116,10 +116,6 @@ const loadProductItems = () => {
                 </button>
                 <ul class="dropdown-menu dropdown-menu-dark">
                     <li><a class="dropdown-item" href="#">1</a></li>
-                    <li><a class="dropdown-item" href="#">2</a></li>
-                    <li><a class="dropdown-item" href="#">3</a></li>
-                    <li><a class="dropdown-item" href="#">4</a></li>
-                    <li><a class="dropdown-item" href="#">5</a></li>
                 </ul>
             </div>
             <button type="button" class="btn btnAddProduct btn-dark" id="${id}">Agregar</button>
