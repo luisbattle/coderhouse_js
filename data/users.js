@@ -1,23 +1,23 @@
 const users = [
     {
         id: 1,
-        username: "luis.batalla",
-        password: "30735505",
-        email: "luis.batalla@outlook.com",
+        username: "admin",
+        password: "12345",
+        email: "luis.batalla@coder.com",
         firstName: "Luis",
         lastName: "Batalla",
-        birthDate: "31/05/1984",
+        birthDate: "34/05/1920",
         phone: "+541150738393",
         job: "Site Reliability Engineer",
         address: {
-            address: "Julian Alvarez 250",
+            address: "Julian Alvarez 333",
             city: "CABA",
             postalCode: "1414"
         },
         company: {
-            name: "Geopagos",
+            name: "Dexter",
             address: {
-                address: "Av Libertador 8620",
+                address: "Av Libertador 5555",
                 city: "CABA"
             },
         }
