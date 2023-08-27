@@ -1,0 +1,49 @@
+[{
+    "id": 1,
+    "username": "admin",
+    "password": "12345",
+    "email": "admin@coder.com",
+    "firstName": "admin",
+    "lastName": "",
+    "birthDate": "34/05/1920",
+    "phone": "+541150738393",
+    "profileImage": "https://www.gravatar.com/avatar/9a2d6b07f91dc567304a5ac8d6d76885",
+    "job": "System Administrator",
+    "address": {
+        "address": "Julian Alvarez 333",
+        "city": "CABA",
+        "postalCode": "1414"
+    },
+    "company": {
+        "name": "SYS Admin S.A",
+        "address": {
+            "address": "Av Libertador 5555",
+            "city": "CABA"
+        }
+    }
+},
+{
+    "id": 2,
+    "username": "luis.batalla",
+    "password": "123456",
+    "email": "luis.batalla@coder.com",
+    "firstName": "Luis",
+    "lastName": "Batalla",
+    "birthDate": "34/05/1920",
+    "phone": "+541150738393",
+    "profileImage": "https://media.licdn.com/dms/image/D4D03AQHTC-WvqVojqQ/profile-displayphoto-shrink_800_800/0/1666924268462?e=1698278400&v=beta&t=9TOy1G61S7K_4mgSPPFjCfs3ofZdg_YIXvci24Yr91E",
+    "job": "Site Reliability Engineer",
+    "address": {
+        "address": "Malabia 250",
+        "city": "CABA",
+        "postalCode": "1414"
+    },
+    "company": {
+        "name": "SYS TECHNOLOGY",
+        "address": {
+            "address": "Av Libertador 5555",
+            "city": "CABA"
+        }
+    }
+}
+]

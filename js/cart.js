@@ -1,10 +1,12 @@
+
 const getUserInfo = () => {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"))
+  const userImageProfile = document.getElementById("image-profile")
+
   if (userInfo) {
-    console.log("info... ", userInfo)
     const userBtn = document.getElementById("user-btn")
     const userBtnItems = document.createElement("ul")
-    userBtnItems.classList.add("dropdown-menu")
+    userBtnItems.classList.add("dropdown-menu", "dropdown-menu-dark")
     userBtnItems.innerHTML = `
         <li><a class="dropdown-item" href="#">${userInfo.firstName} ${userInfo.lastName}</a></li>
         <li>
@@ -12,27 +14,48 @@ const getUserInfo = () => {
         </li>
         <li><a class="dropdown-item" id="userLogout" href="#">Logout</a></li>
     `
+    const element = document.createElement("div")
+    element.classList.add("image-profile-container")
+    element.setAttribute("id", "image-profile-container")
+    element.innerHTML = `
+    <img src=${userInfo.profileImage}></img>
+    `
+
     userBtn.append(userBtnItems)
+    userBtn.append(element)
+
+
+
   }
 }
 
-const getProductById = (productById) => {
+const getProductById = async (productById) => {
+  const products = await fetch('../data/products.json')
+    .then((response => response.json()))
+    .then((data) => {
+      // console.log("dataJSON: ", data[0].name)
+      return data
+    })
+
   const product = products.filter((product) => product.id == productById)
   return product[0]
 }
 
-const addProductToCart = (newItem) => {
+const addProductToCart = async (newItem) => {
 
   const existInACart = myCart.items.filter((item) => item.productId == newItem.productId)
+  console.log("existInACart: ", existInACart)
+  console.log("newItemm: ", newItem)
+  console.log("items in a cart: ", myCart.items)
   if (existInACart.length > 0) {
     myCart.items.forEach((item) => {
       if (newItem.productId == item.productId) {
         item.quantity = item.quantity + 1
-        item.totalPrice = item.quantity * getProductById(newItem.productId).price
+        item.totalPrice = item.quantity * newItem.unitPrice
       }
     })
   } else {
-    myCart.items.push(shoppingCart.getCart())
+    myCart.items.push(await shoppingCart.getCart())
     myCart.amount[0] = totalAmount(myCart)
   }
 
@@ -58,6 +81,10 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
 }
 
+const updateCartIconQuantity = () => {
+  const element = document.getElementById("cart-quantity-icon")
+  element.innerText = myCart.items.length
+}
 
 class ShoppingCart {
 
@@ -66,18 +93,19 @@ class ShoppingCart {
     this.quantity = quantity
   }
 
-  getCart() {
+  async getCart() {
+    const product = await getProductById(this.productId)
+    console.log("getCart: ", product)
     return (
       {
         productId: this.productId,
-        productName: getProductById(this.productId).name,
+        productName: product.name,
         quantity: this.quantity,
-        unitPrice: getProductById(this.productId).price,
-        totalPrice: this.quantity * getProductById(this.productId).price
+        unitPrice: product.price,
+        totalPrice: this.quantity * product.price
       }
     )
   }
-
 }
 
 // VARIABLES
@@ -88,7 +116,12 @@ const myCart = {
 
 let shoppingCart = []
 
-const loadProductItems = () => {
+const loadProductItems = async () => {
+  const products = await fetch('../data/products.json')
+    .then((response => response.json()))
+    .then((data) => {
+      return data
+    })
   products.forEach((product) => {
     const productsHtml = document.getElementById("products")
     const { id, name, brandName, price, image } = product
@@ -126,35 +159,6 @@ const loadProductItems = () => {
   })
 
 }
-
-getUserInfo()
-
-loadProductItems()
-
-// Btn user logout
-const btnUserLogout = document.getElementById("userLogout")
-btnUserLogout.addEventListener("click", () => {
-  localStorage.removeItem("userInfo")
-  location.href = "index.html"
-})
-
-// Add Product to Cart
-const btnAddProducts = document.querySelectorAll(".btnAddProduct")
-btnAddProducts.forEach((btnAddProduct) => {
-  btnAddProduct.addEventListener("click", (event) => {
-    //press click to add product into a cart
-    shoppingCart = new ShoppingCart(event.target.id, 1)
-
-    // check if product Exist in a Cart and increment quantity
-    addProductToCart(shoppingCart.getCart())
-
-    renderCartProducts()
-    renderTotalAmount()
-
-  })
-})
-
-// Delete Product
 const renderCartProducts = () => {
   const cartProductItems = document.getElementById("cart-products-items")
   cartProductItems.innerHTML = ""
@@ -163,27 +167,87 @@ const renderCartProducts = () => {
     productToCart.classList.add("cart-product-item")
     productToCart.innerHTML = `
       <div class="row cart-product-item-container">
-          <div class="col-10">${item.productName} X ${item.quantity} = $ ${item.totalPrice}</div>
-          <div class="col-2">
-              <button id="${item.productId}" type="button" class="btn btn-danger btn-delete-product-item">X</button>
+          <div class="col-10">${item.productName} X ${item.quantity}</div>
+          <div class="col-1">
+              <button id="${item.productId}" type="button" class="btn btn-delete-product-item">
+              <i id="${item.productId}" class="bi bi-trash3-fill btn-delete-product-item"></i>
           </div>
       </div>
     `
+
+    // productToCart.innerHTML = `
+    //   <div class="row cart-product-item-container">
+    //       <div class="col-10">${item.productName} X ${item.quantity}</div>
+    //       <div class="col-1">
+    //           <button id="${item.productId}" type="button" class="btn btn-delete-product-item">
+    //           <i class="bi bi-trash3-fill"></i>
+    //           </button>
+    //       </div>
+    //   </div>
+    // `
     cartProductItems.append(productToCart)
 
     // AddEventListener to Delete Products
     const btnDeleteProductsOfCart = document.querySelectorAll(".btn-delete-product-item")
+    console.log(btnDeleteProductsOfCart)
     btnDeleteProductsOfCart.forEach((btnDeleteProduct) => {
       btnDeleteProduct.addEventListener("click", (event) => {
+        console.log("click...... " + event.target.id)
         deleteProductById(event.target.id)
         renderCartProducts()
-        renderTotalAmount()
+        updateCartIconQuantity()
       })
+    })
+  })
+  const totalElement = document.createElement("div")
+  totalElement.classList.add("text-center")
+  totalElement.innerHTML = `
+  <p id="total-checkout-amount">Total $ ${totalAmount(myCart).totalAmount}</p>
+  <button type="button" class="btn btn-success btn-buy-products">Finalizar compra</button>
+  `
+  cartProductItems.appendChild(totalElement)
+
+}
+const addListeners = () => {
+  // Btn user logout
+  const btnUserLogout = document.getElementById("userLogout")
+  btnUserLogout.addEventListener("click", () => {
+    localStorage.removeItem("userInfo")
+    location.href = "index.html"
+  })
+
+  // Add Product to Cart
+  const btnAddProducts = document.querySelectorAll(".btnAddProduct")
+  btnAddProducts.forEach((btnAddProduct) => {
+    btnAddProduct.addEventListener("click", async (event) => {
+      //press click to add product into a cart
+      shoppingCart = new ShoppingCart(event.target.id, 1)
+
+      // check if product Exist in a Cart and increment quantity
+      const newItem = shoppingCart.getCart()
+        .then(((data) => {
+          addProductToCart(data)
+            .then(() => {
+              renderCartProducts()
+              // renderTotalAmount()
+              updateCartIconQuantity();
+            })
+
+        }))
+
     })
   })
 
 }
-const renderTotalAmount = () => {
-  const totalAmountElement = document.getElementById("order-detail-price")
-  totalAmountElement.innerHTML = totalAmount(myCart).totalAmount
-}
+
+
+getUserInfo()
+loadProductItems()
+  .then(() => {
+    addListeners()
+  })
+renderCartProducts()
+
+
+
+

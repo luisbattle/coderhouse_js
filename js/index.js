@@ -1,12 +1,8 @@
-import usersDb from '../data/users.js'
-
-// pop-up
-// Swal.fire('Any fool can use a computer')
-
 const btnLogin = document.getElementById("btnLogin")
-btnLogin.addEventListener("click", (event) => {
+btnLogin.addEventListener("click", async (event) => {
     event.preventDefault()
-    const userLogin = checkUserLogin()
+    const userLogin = await checkUserLogin()
+    console.log("userLogin: ", userLogin)
     if (!userLogin.error) {
         console.log(`Welcome ${userLogin.user.firstName} ${userLogin.user.lastName}`)
         localStorage.setItem("userInfo", JSON.stringify(userLogin.user))
@@ -36,9 +32,18 @@ const checkUserLogin = () => {
     return loginUser(loginData)
 }
 
-const loginUser = (userToLogin) => {
+const loginUser = async (userToLogin) => {
     console.log("Login check....")
     console.log(userToLogin)
+
+    const usersDb = await fetch('../data/users.json')
+        .then((response => response.json()))
+        .then((data) => {
+            console.log("dataJSON: ", data)
+            return data
+        })
+
+    console.log(usersDb)
     const userFind = usersDb.find((user) => userToLogin.username === user.username && userToLogin.password === user.password)
 
     // delete userPassword from object
