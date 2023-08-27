@@ -1,3 +1,7 @@
+p{
+    margin: 0;
+    padding: 0;
+}
 a{
     color: #bababa;
     text-decoration: none;
@@ -49,9 +53,10 @@ input{
 }
 .login-links p{
     display: flex;
-    justify-content: end;
-    padding-top: 10px;
-    padding-right: 20px;
+    justify-content: flex-end;
+    /* padding-top: 10px; */
+    padding-left: 20px;
+    padding: 5px;
 }
 .btn{
     /* border: 0.5px solid #d332bd; */

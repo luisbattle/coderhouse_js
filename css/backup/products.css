@@ -28,10 +28,13 @@ h1,h2,h3,h4,h5{
 }
 /* ICONS */
 .bi-trash3-fill{
-    width: 50px;
+    color: #fda0a0;
+    transition: 1s all;
+
 }
-.bi-controller{
-    color: #adadad;
+.bi-trash3-fill:hover{
+    color: #ff1313;
+
 }
 .bi-joystick{
     color: #adadad;
@@ -143,6 +146,7 @@ h1,h2,h3,h4,h5{
 .header .nav-right-options svg{
     height: 30px;
     color: #bfbfbf;
+
 }
 
 .header .nav-right-options .btn-group .image-profile-container{
@@ -152,18 +156,35 @@ h1,h2,h3,h4,h5{
 
 .header .nav-right-options .btn-group .image-profile-container img{
     height: 40px;
-    color: #bfbfbf;
     border-radius: 20px;
+    box-shadow: 0.1px 0.1px 1px 3px #bfbfbf;
     opacity: 80%;
+    transition: .5s all;
 }
+.header .nav-right-options .btn-group .image-profile-container img:hover{
+    opacity: 100%;
+    box-shadow: 0.1px 0.1px 1px 3px rebeccapurple;
+}
+
+
 .header .btn-cart-container{
     display: flex;
     flex-direction: row;
     align-items: center;
 }
+.header .btn-cart-container button{
+    display: flex;
+}
+.header .btn-cart-container button .bi-bag{
+    font-size: 30px;
+    color: #bfbfbf;
+}
+.header .btn-cart-container button .bi-bag:hover{
+    font-size: 30px;
+    color: rebeccapurple;
+}
 .header .btn-cart-container p{
     color: #bfbfbf;
-
 }
 /* 
 MEDIAS QUERIES 
