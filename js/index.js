@@ -44,12 +44,10 @@ const addProductToCart = async (newItem) => {
 
   // const existInACart = myCart.items.filter((item) => item.productId == newItem.productId)
   const existInACart = cart.items.filter((item) => item.productId == newItem.productId)
-  console.log("existInACart: ", existInACart)
 
   if (existInACart.length > 0) {
     cart.items.forEach((item) => {
       if (newItem.productId == item.productId) {
-        console.log("yaa existe")
         item.quantity = item.quantity + 1
         item.totalPrice = item.quantity * newItem.unitPrice
         localStorage.setItem("cart", JSON.stringify(cart))
@@ -58,9 +56,7 @@ const addProductToCart = async (newItem) => {
   } else {
     cart.items.push(await shoppingCart.getCart())
     cart.amount[0] = totalAmount(cart)
-    console.log("Cart: ", cart)
     localStorage.setItem("cart", JSON.stringify(cart))
-    console.log("dataCartJSON: ", cart)
   }
 
 }
@@ -179,7 +175,6 @@ const renderCartProducts = () => {
   cartProductItems.innerHTML = ""
 
   const cart = JSON.parse(localStorage.getItem("cart")) || { "items": [], "amount": [] }
-  // console.log("exist key... ", cart.hasOwnProperty('items'))
 
   cart.items.forEach((item) => {
     let productToCart = document.createElement("div")
