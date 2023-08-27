@@ -33,7 +33,6 @@ const getProductById = async (productById) => {
   const products = await fetch('../data/products.json')
     .then((response => response.json()))
     .then((data) => {
-      // console.log("dataJSON: ", data[0].name)
       return data
     })
 
@@ -44,9 +43,7 @@ const getProductById = async (productById) => {
 const addProductToCart = async (newItem) => {
 
   const existInACart = myCart.items.filter((item) => item.productId == newItem.productId)
-  console.log("existInACart: ", existInACart)
-  console.log("newItemm: ", newItem)
-  console.log("items in a cart: ", myCart.items)
+
   if (existInACart.length > 0) {
     myCart.items.forEach((item) => {
       if (newItem.productId == item.productId) {
@@ -95,7 +92,6 @@ class ShoppingCart {
 
   async getCart() {
     const product = await getProductById(this.productId)
-    console.log("getCart: ", product)
     return (
       {
         productId: this.productId,
@@ -174,25 +170,12 @@ const renderCartProducts = () => {
           </div>
       </div>
     `
-
-    // productToCart.innerHTML = `
-    //   <div class="row cart-product-item-container">
-    //       <div class="col-10">${item.productName} X ${item.quantity}</div>
-    //       <div class="col-1">
-    //           <button id="${item.productId}" type="button" class="btn btn-delete-product-item">
-    //           <i class="bi bi-trash3-fill"></i>
-    //           </button>
-    //       </div>
-    //   </div>
-    // `
     cartProductItems.append(productToCart)
 
     // AddEventListener to Delete Products
     const btnDeleteProductsOfCart = document.querySelectorAll(".btn-delete-product-item")
-    console.log(btnDeleteProductsOfCart)
     btnDeleteProductsOfCart.forEach((btnDeleteProduct) => {
       btnDeleteProduct.addEventListener("click", (event) => {
-        console.log("click...... " + event.target.id)
         deleteProductById(event.target.id)
         renderCartProducts()
         updateCartIconQuantity()
