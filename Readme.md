@@ -23,9 +23,8 @@ Se implementa fetch para obtención:
     * Login
     * productos vía API
 
-
 ## Carrito de compras
-
+![Carrito de Compra](./img/doc/carrito.png)
 
 ## Estilos
 Se utilizó el procesador [Sass]("https://sass-lang.com/") para manejo de estilos
