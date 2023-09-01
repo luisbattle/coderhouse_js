@@ -205,7 +205,7 @@ const renderCartProducts = () => {
   totalElement.classList.add("text-center")
   totalElement.innerHTML = `
   <p id="total-checkout-amount">Total $ ${totalAmount(cart).totalAmount}</p>
-  <button type="button" class="btn btn-success btn-buy-products">Finalizar compra</button>
+  <button type="button" class="btn btn-success btn-buy-products id="btn-buy-products">Finalizar compra</button>
   `
   cartProductItems.appendChild(totalElement)
 

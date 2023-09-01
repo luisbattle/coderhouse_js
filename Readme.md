@@ -5,16 +5,27 @@
 
 ## Login
 Se implementa interfaz login
-![](./img/login.png)
-![](./img/login-error.png)
+![login](./img/doc/Login-Desktop.png)
+![login-error](./img/doc/login-error.png)
+
+Se implementó logout de usuario
+![logout](./img/doc/portada-login-logout.png)
 
 ## Carrito de Compras
 Permite agregar productos a una lista en el carrito y eliminarlas.
-![](./img/carrito-de-compras.png)
+![](./img/doc/portada-productos.png)
 Si se agrega un producto existente se acumula y re-calcula el total del carrito.
 
-Se implementó logout de usuario
-![](./img/login-logout.png)
 
 Se utiliza localStorage para obtener datos del usuario logueado y asi poder hacer luego un logout para eliminarlo del localStorage:
-![](./img/local-storage.png)
+
+Se implementa fetch para obtención:
+    * Login
+    * productos vía API
+
+
+## Carrito de compras
+
+
+## Estilos
+Se utilizó el procesador [Sass]("https://sass-lang.com/") para manejo de estilos

@@ -154,6 +154,13 @@ h1,h2,h3,h4,h5{
     align-items: center;
 }
 
+.profile-image{
+    height: 40px;
+    border-radius: 20px;
+    box-shadow: 0.1px 0.1px 1px 3px #bfbfbf;
+    opacity: 80%;
+    transition: .5s all;
+}
 .header .nav-right-options .btn-group .image-profile-container img{
     height: 40px;
     border-radius: 20px;

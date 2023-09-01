@@ -1,0 +1,11 @@
+{
+  "name": "zona-gamer",
+  "version": "1.0.0",
+  "description": "CoderHouse JS Project",
+  "main": "promises.js",
+  "scripts": {
+    "dev": "sass --watch scss:css"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,213 @@
+@import url("https://fonts.googleapis.com/css2?family=Handjet&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  background-color: #1e1e1e;
+}
+body .header {
+  border-bottom: 0.3px solid rebeccapurple;
+}
+body .header .row .nav-logo-container .nav-logo {
+  max-height: 90px;
+  border-radius: 60px;
+  opacity: 50%;
+}
+body .header .row .nav-title {
+  padding-top: 20px;
+}
+body .header .row .nav-title .main-title {
+  font-family: "Handjet", Courier, monospace;
+  color: #663399;
+}
+body .header .row .nav-right-options {
+  display: flex;
+  justify-content: flex-end;
+}
+body .header .row .nav-right-options .btn-group button {
+  padding: 0;
+}
+body .header .row .nav-right-options .btn-group button .profile-image {
+  height: 40px;
+  border-radius: 20px;
+  box-shadow: 0.1px 0.1px 1px 3px #bfbfbf;
+  opacity: 80%;
+  transition: 0.5s all;
+}
+body .header .row .nav-right-options .btn-group button .profile-image:hover {
+  opacity: 100%;
+  box-shadow: 0.1px 0.1px 1px 3px rebeccapurple;
+}
+body .header .row .nav-right-options .btn-cart-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+body .header .row .nav-right-options .btn-cart-container button {
+  display: flex;
+  padding: 0;
+}
+body .header .row .nav-right-options .btn-cart-container button .bi-bag {
+  font-size: 30px;
+  color: #bfbfbf;
+  transition: 0.5s all;
+}
+body .header .row .nav-right-options .btn-cart-container button .bi-bag:hover {
+  font-size: 30px;
+  color: rebeccapurple;
+}
+body .header .row .nav-right-options .btn-cart-container button p {
+  color: #bfbfbf;
+}
+body .header .row .nav-right-options svg {
+  height: 30px;
+  color: #bfbfbf;
+}
+body .container .row h2 {
+  color: #adadad;
+}
+body .container .row .bi-joystick {
+  color: #adadad;
+}
+body .container .row .product-item {
+  display: flex;
+  border: 0.5px solid rgb(237, 237, 237);
+  border-radius: 10px;
+  background-color: #f0f0f0;
+  padding: 15px;
+  margin: 5px;
+  align-items: center;
+}
+body .container .row .product-item .product-item-image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+body .container .row .product-item .product-item-image {
+  display: flex;
+  border-radius: 10px;
+  width: 100%;
+}
+body .container .row .product-item .product-item-price {
+  color: rgb(174, 1, 1);
+  font-weight: bold;
+}
+body .container .row .product-item .product-item-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+body {
+  background-color: #1e1e1e;
+}
+
+.container h1 {
+  font-family: "Handjet", Courier, monospace;
+  color: #663399;
+  margin-top: 50px;
+}
+.container .logo-container {
+  display: flex;
+  justify-content: center;
+}
+.container .logo-container .login-logo {
+  border-radius: 90px;
+  width: 190px;
+}
+.container .login-container {
+  margin: 0 auto;
+  margin-top: 30px;
+  border: 0.8px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 5px 5px #393939;
+  width: 50%;
+  padding-top: 50px;
+}
+.container .login-container form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container .login-container form input {
+  margin: 8px;
+}
+.container .login-container form .btn {
+  background: rgb(21, 0, 255);
+  background: linear-gradient(90deg, rgb(21, 0, 255) 0%, rgb(225, 54, 240) 51%, rgb(21, 0, 255) 100%);
+  color: white;
+  width: 100px;
+}
+.container .login-container .login-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+.container .login-container .login-links a {
+  color: #663399;
+}
+.container .animations img {
+  width: 50px;
+}
+
+/* Mobile*/
+@media (min-width: 300px) {
+  .container h1 {
+    font-size: 60px;
+  }
+  .container .login-container {
+    width: 100%;
+  }
+  .container .animations img {
+    width: 100px;
+  }
+  #products {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .product-item {
+    width: 100%;
+  }
+}
+/* Tablet*/
+@media (min-width: 768px) {
+  .container .login-container {
+    width: 50%;
+  }
+}
+/* Desktop*/
+@media (min-width: 1024px) {
+  .container .login-container {
+    width: 40%;
+  }
+  #products {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  #products .product-item {
+    width: 350px;
+    height: 150px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
