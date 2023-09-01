@@ -2,6 +2,9 @@
     Login: admin
     Password: 12345
 
+    Login2: luis.batalla
+    Password: 123456
+
 
 ## Login
 Se implementa interfaz login
